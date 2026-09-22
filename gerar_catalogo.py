@@ -118,6 +118,47 @@ with open(SAIDA, "w", newline="", encoding="utf-8-sig") as f:
     w.writeheader()
     w.writerows(linhas)
 
+# ---------- 5. top 490 mais vendidos (limite de 500 produtos do WhatsApp Business app) ----------
+# Ranking por unidades do fechamento mensal mais recente. Ficam de fora o CD (filial 000) e as
+# linhas de movimentacao de estoque (devolucao / remanejo), que nao sao venda ao cliente.
+VENDAS_DIR = os.path.join(BASE, "ESTOQUE - VENDAS LOJAS", "VENDAS", "VENDAS GERAL")
+SAIDA_TOP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo_top500.csv")
+LIMITE_WHATSAPP = 490
+IGNORAR_VENDEDOR = {"devolucao mercadorias", "remanejos entre lojas"}
+
+arqs_ven = sorted(a for a in glob.glob(os.path.join(VENDAS_DIR, "20??-?? Vendas geral*.xlsx"))
+                  if "editada" not in norm(os.path.basename(a)))
+if not arqs_ven:
+    sys.exit(f"ERRO: nenhum arquivo 'AAAA-MM Vendas geral*.xlsx' em {VENDAS_DIR}")
+arq_ven = arqs_ven[-1]
+wb = openpyxl.load_workbook(arq_ven, data_only=True, read_only=True)
+ws = wb["Plan1"] if "Plan1" in wb.sheetnames else wb[wb.sheetnames[0]]
+linhas_ven = ws.iter_rows(values_only=True)
+cab = [norm(c or "") for c in next(linhas_ven)]
+i_fil, i_prod, i_qtd = cab.index("filial"), cab.index("produto"), cab.index("quantidade")
+i_vend = cab.index("nome vendedor") if "nome vendedor" in cab else None
+
+vendido = {}
+for r in linhas_ven:
+    cod, fil = r[i_prod], str(r[i_fil] or "").strip()
+    if not cod or not fil or fil.lstrip("0") == "":
+        continue
+    if i_vend is not None and norm(r[i_vend] or "") in IGNORAR_VENDEDOR:
+        continue
+    try:
+        q = float(r[i_qtd] or 0)
+    except (TypeError, ValueError):
+        continue
+    k = str(cod).strip().lstrip("0")
+    vendido[k] = vendido.get(k, 0) + q
+
+top = sorted((l for l in linhas if vendido.get(l["id"].lstrip("0"), 0) > 0),
+             key=lambda l: -vendido[l["id"].lstrip("0")])[:LIMITE_WHATSAPP]
+with open(SAIDA_TOP, "w", newline="", encoding="utf-8-sig") as f:
+    w = csv.DictWriter(f, fieldnames=cols)
+    w.writeheader()
+    w.writerows(top)
+
 print(f"""
   descartados:
     medicamento (LB/GENER/SIMIL): {medicamento}
@@ -127,4 +168,8 @@ print(f"""
 
   CATALOGO GERADO: {len(linhas)} produtos
   arquivo: {SAIDA}
+
+  CATALOGO WHATSAPP (mais vendidos): {len(top)} produtos
+  ranking de vendas: {os.path.basename(arq_ven)}
+  arquivo: {SAIDA_TOP}
 """)

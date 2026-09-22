@@ -10,14 +10,14 @@ python gerar_catalogo.py
 if errorlevel 1 goto erro
 
 echo Enviando para a nuvem...
-git add catalogo.csv
+git add catalogo.csv catalogo_top500.csv gerar_catalogo.py
 git diff --cached --quiet && (echo Nenhuma mudanca de preco hoje. Nada a enviar. & goto fim)
 git commit -m "atualiza catalogo %date%"
 git push
 if errorlevel 1 goto erro
 
 echo.
-echo PRONTO. A Meta vai reler o catalogo no proximo horario programado (09:26).
+echo PRONTO. A Meta rele o catalogo em ate 1 hora.
 goto fim
 
 :erro
