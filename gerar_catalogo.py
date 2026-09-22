@@ -119,7 +119,7 @@ with open(SAIDA, "w", newline="", encoding="utf-8-sig") as f:
     w.writerows(linhas)
 
 # ---------- 5. top 490 mais vendidos (limite de 500 produtos do WhatsApp Business app) ----------
-# Ranking por unidades do fechamento mensal mais recente. Ficam de fora o CD (filial 000) e as
+# Ranking por faturamento (quantidade do fechamento mensal mais recente x P.M.C. do cadastro). Ficam de fora o CD (filial 000) e as
 # linhas de movimentacao de estoque (devolucao / remanejo), que nao sao venda ao cliente.
 VENDAS_DIR = os.path.join(BASE, "ESTOQUE - VENDAS LOJAS", "VENDAS", "VENDAS GERAL")
 SAIDA_TOP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo_top500.csv")
@@ -152,8 +152,10 @@ for r in linhas_ven:
     k = str(cod).strip().lstrip("0")
     vendido[k] = vendido.get(k, 0) + q
 
-top = sorted((l for l in linhas if vendido.get(l["id"].lstrip("0"), 0) > 0),
-             key=lambda l: -vendido[l["id"].lstrip("0")])[:LIMITE_WHATSAPP]
+def faturamento(l):
+    return vendido.get(l["id"].lstrip("0"), 0) * float(l["price"].split()[0])
+
+top = sorted((l for l in linhas if faturamento(l) > 0), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
 with open(SAIDA_TOP, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()
