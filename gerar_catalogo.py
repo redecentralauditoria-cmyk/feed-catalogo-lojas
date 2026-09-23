@@ -111,8 +111,11 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     })
 
 # ---------- 4. gravar ----------
+# Ordem alfabetica (por titulo) so afeta a ORDEM DE EXIBICAO no catalogo do WhatsApp/loja;
+# quais produtos entram continua decidido pelos filtros acima (e, no top 490, pelo faturamento).
 cols = ["id", "title", "description", "availability", "condition",
         "price", "link", "image_link", "brand"]
+linhas.sort(key=lambda l: norm(l["title"]))
 with open(SAIDA, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()
@@ -156,6 +159,7 @@ def faturamento(l):
     return vendido.get(l["id"].lstrip("0"), 0) * float(l["price"].split()[0])
 
 top = sorted((l for l in linhas if faturamento(l) > 0), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
+top.sort(key=lambda l: norm(l["title"]))  # exibicao alfabetica; entrada no top 500 já foi decidida acima por faturamento
 with open(SAIDA_TOP, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()
