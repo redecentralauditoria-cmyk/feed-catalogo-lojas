@@ -128,7 +128,7 @@ with open(SAIDA, "w", newline="", encoding="utf-8-sig") as f:
 # linhas de movimentacao de estoque (devolucao / remanejo), que nao sao venda ao cliente.
 VENDAS_DIR = os.path.join(AUTOMATIZ_DIR, "VENDAS GERAL")
 SAIDA_TOP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo_top500.csv")
-LIMITE_WHATSAPP = 490
+LIMITE_WHATSAPP = 500
 IGNORAR_VENDEDOR = {"devolucao mercadorias", "remanejos entre lojas"}
 
 arqs_ven = sorted(a for a in glob.glob(os.path.join(VENDAS_DIR, "20??-?? Vendas geral*.xlsx"))
