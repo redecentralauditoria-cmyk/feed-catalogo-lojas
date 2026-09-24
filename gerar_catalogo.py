@@ -12,8 +12,11 @@ import openpyxl, csv, glob, os, re, sys, unicodedata
 from datetime import datetime
 
 BASE = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE"
-CADASTRO_DIR = os.path.join(BASE, "ESTOQUE - VENDAS LOJAS", "VENDAS")
-ESTOQUE_DIR = os.path.join(BASE, "ESTOQUE - VENDAS LOJAS", "ESTOQUE")
+# Cadastro e Estoque vem da pasta dedicada deste projeto (o Marcel cola os arquivos aqui manualmente,
+# nunca direto da rede) - pasta com espacos duplos de proposito, e o nome real da pasta no disco.
+AUTOMATIZ_DIR = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
+CADASTRO_DIR = AUTOMATIZ_DIR
+ESTOQUE_DIR = AUTOMATIZ_DIR
 BANCO_FOTOS = os.path.join(BASE, "IMAGENS-CATALOGO", "BANCO_IMAGENS_INSTABUY.xlsx")
 SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo.csv")
 LINK_LOJA = "https://loja.redecentralfarma.com.br/"
