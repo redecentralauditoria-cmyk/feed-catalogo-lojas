@@ -11,13 +11,12 @@ REGRAS DE SEGURANCA (nao alterar sem falar com o Marcel):
 import openpyxl, csv, glob, os, re, sys, unicodedata
 from datetime import datetime
 
-BASE = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE"
-# Cadastro e Estoque vem da pasta dedicada deste projeto (o Marcel cola os arquivos aqui manualmente,
+# Todas as fontes vem da pasta dedicada deste projeto (o Marcel cola os arquivos aqui manualmente,
 # nunca direto da rede) - pasta com espacos duplos de proposito, e o nome real da pasta no disco.
 AUTOMATIZ_DIR = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
 CADASTRO_DIR = AUTOMATIZ_DIR
 ESTOQUE_DIR = AUTOMATIZ_DIR
-BANCO_FOTOS = os.path.join(BASE, "IMAGENS-CATALOGO", "BANCO_IMAGENS_INSTABUY.xlsx")
+BANCO_FOTOS = os.path.join(AUTOMATIZ_DIR, "BANCO_IMAGENS_INSTABUY.xlsx")
 SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo.csv")
 LINK_LOJA = "https://loja.redecentralfarma.com.br/"
 
@@ -127,7 +126,7 @@ with open(SAIDA, "w", newline="", encoding="utf-8-sig") as f:
 # ---------- 5. top 490 mais vendidos (limite de 500 produtos do WhatsApp Business app) ----------
 # Ranking por faturamento (quantidade do fechamento mensal mais recente x P.M.C. do cadastro). Ficam de fora o CD (filial 000) e as
 # linhas de movimentacao de estoque (devolucao / remanejo), que nao sao venda ao cliente.
-VENDAS_DIR = os.path.join(BASE, "ESTOQUE - VENDAS LOJAS", "VENDAS", "VENDAS GERAL")
+VENDAS_DIR = os.path.join(AUTOMATIZ_DIR, "VENDAS GERAL")
 SAIDA_TOP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo_top500.csv")
 LIMITE_WHATSAPP = 490
 IGNORAR_VENDEDOR = {"devolucao mercadorias", "remanejos entre lojas"}
