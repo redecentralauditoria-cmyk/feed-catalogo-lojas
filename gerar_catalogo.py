@@ -2,8 +2,10 @@
 Gera o catalogo.csv do catalogo da Meta a partir das planilhas do FarmaPRO.
 
 REGRAS DE SEGURANCA (nao alterar sem falar com o Marcel):
-- So entram produtos cujo "Nome Grupo" comeca com HPC (higiene pessoal e cosmeticos).
-  Os grupos LB / GENER / SIMIL sao MEDICAMENTO pelo cadastro oficial e NUNCA entram.
+- So entram produtos cujo "Nome Grupo" comeca com HPC (higiene pessoal e cosmeticos), mais os
+  grupos LB de nao-medicamento em GRUPOS_LB_LIBERADOS (leites/nutricao e dermocosmeticos,
+  autorizados pelo Marcel em 02/10/2026). Os demais grupos LB / GENER / SIMIL sao MEDICAMENTO
+  pelo cadastro oficial e NUNCA entram.
   Esse filtro e a trava real: o medicamento nao existe no arquivo, entao a IA nao
   tem como informar preco dele pelo catalogo.
 - Preco = coluna P.M.C. do CADASTRO (ja com desconto Fidelidade).
@@ -20,7 +22,14 @@ BANCO_FOTOS = os.path.join(AUTOMATIZ_DIR, "BANCO_IMAGENS_INSTABUY.xlsx")
 SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo.csv")
 LINK_LOJA = "https://loja.redecentralfarma.com.br/"
 
-EXCLUIR_NOME = ["violeta genciana"]  # classificado como "para infeccoes" na loja online
+GRUPOS_LB_LIBERADOS = {
+    "LB LIBERADOS NUTRICAO",             # leites infantis, Ensure, Nutren, Sustagen...
+    "LB LIBERADOS DERMO",                # dermocosmeticos (CeraVe, La Roche, Avene...)
+    "LB EXCESSO ESTOQUE HPC/LIBERADOS",  # HPC/liberados em queima de estoque (NAN sem lactose etc.)
+}
+
+# itens de medicamento/OTC que caem nos grupos liberados acima, ou classificados como tratamento na loja online
+EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda", "bye bye fever", "canfora 1un"]
 
 
 def mais_recente(pasta, padrao):
@@ -74,7 +83,7 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     if not cod:
         continue
     grupo = (grupo or "").strip()
-    if not grupo.startswith("HPC"):      # <-- trava de medicamento
+    if not (grupo.startswith("HPC") or grupo in GRUPOS_LB_LIBERADOS):      # <-- trava de medicamento
         medicamento += 1
         continue
     if str(lsit).strip().lower() != "true":
@@ -96,7 +105,7 @@ for r in ws.iter_rows(min_row=2, values_only=True):
 
     nome_ib, marca, img = fotos[k]
     titulo = (nome_ib or desc or "").strip()
-    if any(x in norm(titulo) for x in EXCLUIR_NOME):
+    if any(x in norm(titulo) or x in norm(desc or "") for x in EXCLUIR_NOME):
         excluidos.append(titulo)
         continue
 
