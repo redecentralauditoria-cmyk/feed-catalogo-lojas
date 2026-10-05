@@ -107,7 +107,7 @@ top.sort(key=lambda k: norm(itens[k][0]))
 hoje = date.today()
 seg = hoje + timedelta(days=(7 - hoje.weekday()) % 7)  # proxima segunda (ou hoje, se for segunda)
 fim = seg + timedelta(days=6)
-saida = os.path.join(PASTA, f"precos_medicamentos_venda_livre_{seg:%d-%m-%Y}.pdf")
+saida = os.path.join(DIARIO, f"precos_medicamentos_venda_livre_{seg:%d-%m-%Y}.pdf")
 
 st = ParagraphStyle("c", fontName="Helvetica", fontSize=9, leading=12)
 stt = ParagraphStyle("t", fontName="Helvetica-Bold", fontSize=13, leading=17, spaceAfter=6)
