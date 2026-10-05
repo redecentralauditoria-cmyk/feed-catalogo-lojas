@@ -16,8 +16,9 @@ from datetime import datetime
 # Todas as fontes vem da pasta dedicada deste projeto (o Marcel cola os arquivos aqui manualmente,
 # nunca direto da rede) - pasta com espacos duplos de proposito, e o nome real da pasta no disco.
 AUTOMATIZ_DIR = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
-CADASTRO_DIR = AUTOMATIZ_DIR
-ESTOQUE_DIR = AUTOMATIZ_DIR
+DIARIO_DIR = os.path.join(AUTOMATIZ_DIR, "ATUALIZAÇÃO DIARIA - CATALOGO PROD")  # o Marcel salva aqui o cadastro e o estoque do dia
+CADASTRO_DIR = DIARIO_DIR
+ESTOQUE_DIR = DIARIO_DIR
 BANCO_FOTOS = os.path.join(AUTOMATIZ_DIR, "BANCO_IMAGENS_INSTABUY.xlsx")
 SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo.csv")
 LINK_LOJA = "https://loja.redecentralfarma.com.br/"

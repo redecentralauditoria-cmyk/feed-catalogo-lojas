@@ -19,6 +19,7 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 
 PASTA = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
+DIARIO = os.path.join(PASTA, "ATUALIZAÇÃO DIARIA - CATALOGO PROD")  # cadastro e estoque do dia
 TOP_N = 300
 
 GRUPOS_MIP = {
@@ -36,7 +37,7 @@ def norm(s):
 
 
 def mais_recente(padrao):
-    achados = glob.glob(os.path.join(PASTA, padrao))
+    achados = glob.glob(os.path.join(DIARIO, padrao))
     if not achados:
         sys.exit(f"ERRO: nenhum arquivo '{padrao}' em {PASTA}")
     return max(achados, key=os.path.getmtime)
