@@ -109,6 +109,10 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     if any(x in norm(titulo) or x in norm(desc or "") for x in EXCLUIR_NOME):
         excluidos.append(titulo)
         continue
+    # segmentos fora do catalogo (decisao do Marcel 06/10/2026): agulhas, seringas e testes (palavra inteira no nome)
+    if re.search(r"\b(agulhas?|seringas?|testes?)\b", norm(titulo)):
+        excluidos.append(titulo)
+        continue
 
     linhas.append({
         "id": k,
