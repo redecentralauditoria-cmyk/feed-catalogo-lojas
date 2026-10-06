@@ -141,16 +141,17 @@ SAIDA_TOP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalogo_t
 LIMITE_WHATSAPP = 500
 IGNORAR_VENDEDOR = {"devolucao mercadorias", "remanejos entre lojas"}
 
-arqs_ven = sorted(a for a in glob.glob(os.path.join(VENDAS_DIR, "20??-?? Vendas geral*.xlsx"))
-                  if "editada" not in norm(os.path.basename(a)))
+# Pega o fechamento do mes mais recente; se existir a versao "editada colunas" (CD ja removido pelo Marcel), ela tem prioridade.
+arqs_ven = glob.glob(os.path.join(VENDAS_DIR, "20??-?? Vendas geral*.xlsx"))
 if not arqs_ven:
     sys.exit(f"ERRO: nenhum arquivo 'AAAA-MM Vendas geral*.xlsx' em {VENDAS_DIR}")
-arq_ven = arqs_ven[-1]
+arq_ven = max(arqs_ven, key=lambda a: (os.path.basename(a)[:7], "editada" in norm(os.path.basename(a))))
 wb = openpyxl.load_workbook(arq_ven, data_only=True, read_only=True)
 ws = wb["Plan1"] if "Plan1" in wb.sheetnames else wb[wb.sheetnames[0]]
 linhas_ven = ws.iter_rows(values_only=True)
 cab = [norm(c or "") for c in next(linhas_ven)]
 i_fil, i_prod, i_qtd = cab.index("filial"), cab.index("produto"), cab.index("quantidade")
+i_bruto = cab.index("valor bruto")  # regra do Marcel (06/10/2026): faturamento = Quantidade x Valor Bruto
 i_vend = cab.index("nome vendedor") if "nome vendedor" in cab else None
 
 vendido = {}
@@ -162,13 +163,14 @@ for r in linhas_ven:
         continue
     try:
         q = float(r[i_qtd] or 0)
+        v = float(r[i_bruto] or 0)
     except (TypeError, ValueError):
         continue
     k = str(cod).strip().lstrip("0")
-    vendido[k] = vendido.get(k, 0) + q
+    vendido[k] = vendido.get(k, 0) + q * v
 
 def faturamento(l):
-    return vendido.get(l["id"].lstrip("0"), 0) * float(l["price"].split()[0])
+    return vendido.get(l["id"].lstrip("0"), 0)
 
 top = sorted((l for l in linhas if faturamento(l) > 0), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
 top.sort(key=lambda l: norm(l["title"]))  # exibicao alfabetica; entrada no top 500 já foi decidida acima por faturamento
