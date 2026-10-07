@@ -36,8 +36,9 @@ EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda"
 # (vaga garantida, mesmo fora dos mais vendidos e mesmo em grupo SIMIL LIBERADOS); o resto das 500 vagas e
 # completado pelos mais vendidos. Fica de fora a aba MEDICAMENTO do checklist (politica do WhatsApp nao permite remedio no catalogo).
 CHECKLIST_MP = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
+MP_LIGADO = False   # 07/10/2026: Marcel pediu para esperar - so ligar (True) com o OK dele
 MP_CODIGOS = set()
-if os.path.exists(CHECKLIST_MP):
+if MP_LIGADO and os.path.exists(CHECKLIST_MP):
     _wb = openpyxl.load_workbook(CHECKLIST_MP, data_only=True, read_only=True)
     for _ws in _wb.worksheets:
         if "Instru" in _ws.title or "Geral" in _ws.title or _ws.title.strip().upper() == "MEDICAMENTO":
