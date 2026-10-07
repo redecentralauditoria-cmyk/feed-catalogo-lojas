@@ -32,6 +32,22 @@ GRUPOS_LB_LIBERADOS = {
 # itens de medicamento/OTC que caem nos grupos liberados acima, ou classificados como tratamento na loja online
 EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda", "bye bye fever", "canfora 1un"]
 
+# Marca propria (decisao do Marcel 07/10/2026): todo item do checklist de marca propria entra no catalogo do WhatsApp
+# (vaga garantida, mesmo fora dos mais vendidos e mesmo em grupo SIMIL LIBERADOS); o resto das 500 vagas e
+# completado pelos mais vendidos. Fica de fora a aba MEDICAMENTO do checklist (politica do WhatsApp nao permite remedio no catalogo).
+CHECKLIST_MP = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
+MP_CODIGOS = set()
+if os.path.exists(CHECKLIST_MP):
+    _wb = openpyxl.load_workbook(CHECKLIST_MP, data_only=True, read_only=True)
+    for _ws in _wb.worksheets:
+        if "Instru" in _ws.title or "Geral" in _ws.title or _ws.title.strip().upper() == "MEDICAMENTO":
+            continue
+        for _r in _ws.iter_rows(values_only=True):
+            if _r and len(_r) > 1 and _r[1] and str(_r[1]).strip().isdigit():
+                MP_CODIGOS.add(str(_r[1]).strip().lstrip("0"))
+else:
+    print(f"  AVISO: checklist de marca propria nao encontrado ({CHECKLIST_MP}) - catalogo sai so pelos mais vendidos")
+
 
 def mais_recente(pasta, padrao):
     achados = glob.glob(os.path.join(pasta, padrao))
@@ -84,7 +100,8 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     if not cod:
         continue
     grupo = (grupo or "").strip()
-    if not (grupo.startswith("HPC") or grupo in GRUPOS_LB_LIBERADOS):      # <-- trava de medicamento
+    if not (grupo.startswith("HPC") or grupo in GRUPOS_LB_LIBERADOS
+            or str(cod).strip().lstrip("0") in MP_CODIGOS):                 # <-- trava de medicamento (marca propria do checklist passa)
         medicamento += 1
         continue
     if str(lsit).strip().lower() != "true":
@@ -176,7 +193,11 @@ for r in linhas_ven:
 def faturamento(l):
     return vendido.get(l["id"].lstrip("0"), 0)
 
-top = sorted((l for l in linhas if faturamento(l) > 0), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
+eh_mp = lambda l: l["id"].lstrip("0") in MP_CODIGOS
+top_mp = sorted((l for l in linhas if eh_mp(l)), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
+top_outros = sorted((l for l in linhas if not eh_mp(l) and faturamento(l) > 0), key=faturamento, reverse=True)
+top = top_mp + top_outros[:LIMITE_WHATSAPP - len(top_mp)]
+print(f"  marca propria no catalogo WhatsApp: {len(top_mp)} | mais vendidos (demais): {len(top) - len(top_mp)}")
 top.sort(key=lambda l: norm(l["title"]))  # exibicao alfabetica; entrada no top 500 já foi decidida acima por faturamento
 with open(SAIDA_TOP, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=cols)
