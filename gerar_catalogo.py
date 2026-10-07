@@ -46,7 +46,7 @@ if MP_LIGADO and os.path.exists(CHECKLIST_MP):
         for _r in _ws.iter_rows(values_only=True):
             if _r and len(_r) > 1 and _r[1] and str(_r[1]).strip().isdigit():
                 MP_CODIGOS.add(str(_r[1]).strip().lstrip("0"))
-else:
+elif MP_LIGADO:
     print(f"  AVISO: checklist de marca propria nao encontrado ({CHECKLIST_MP}) - catalogo sai so pelos mais vendidos")
 
 
