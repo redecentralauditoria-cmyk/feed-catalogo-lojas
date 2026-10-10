@@ -28,6 +28,9 @@ GRUPOS_MIP = {
 }
 # dentro dos grupos acima, apresentacoes que exigem receita
 EXCLUIR = [r"\b(IBUPRO\w*|BUPROVIL|IBUFRAN|ALIVIUM)\b.*\b(600|800)\s?MG", r"PAREGORICO"]
+# Medicamentos de MARCA PROPRIA (aba MEDICAMENTO do checklist): nao podem ir no catalogo do WhatsApp, entram SEMPRE nesta lista
+# (decisao Marcel 10/10/2026): Lufree x2, Lactulona x2, Gastroclean, Gelomag aerosol
+FORCAR = ["107026", "107025", "116240", "116239", "107903", "110417"]
 IGNORAR_VENDEDOR = {"devolucao mercadorias", "remanejos entre lojas"}
 
 
@@ -100,19 +103,21 @@ for r in linhas:
     k = str(cod).strip().lstrip("0")
     qtd[k] = qtd.get(k, 0) + q
 
-top = sorted((k for k in itens if qtd.get(k, 0) > 0), key=lambda k: qtd[k] * itens[k][1], reverse=True)[:TOP_N]
+top = sorted((k for k in itens if qtd.get(k, 0) > 0 and k not in FORCAR), key=lambda k: qtd[k] * itens[k][1], reverse=True)[:TOP_N - len(FORCAR)]
+faltou = [c for c in FORCAR if c not in itens]
+top += [c for c in FORCAR if c in itens]
+if faltou:
+    print("AVISO: marca propria sem preco/estoque/cadastro, ficou fora da lista:", faltou)
 top.sort(key=lambda k: norm(itens[k][0]))
 
 # PDF
 hoje = date.today()
-seg = hoje + timedelta(days=(7 - hoje.weekday()) % 7)  # proxima segunda (ou hoje, se for segunda)
-fim = seg + timedelta(days=6)
-saida = os.path.join(DIARIO, f"precos_medicamentos_venda_livre_{seg:%d-%m-%Y}.pdf")
+saida = os.path.join(DIARIO, f"precos_medicamentos_venda_livre_{hoje:%d-%m-%Y}.pdf")   # lista DIARIA desde 10/10/2026
 
 st = ParagraphStyle("c", fontName="Helvetica", fontSize=9, leading=12)
 stt = ParagraphStyle("t", fontName="Helvetica-Bold", fontSize=13, leading=17, spaceAfter=6)
 S = [Paragraph("Rede Central Farma - Lista de preços de medicamentos de venda livre e vitaminas", stt),
-     Paragraph(f"<b>Válida de {seg:%d/%m/%Y} a {fim:%d/%m/%Y}.</b> Esta lista SUBSTITUI qualquer lista de preços anterior. "
+     Paragraph(f"<b>Preços de {hoje:%d/%m/%Y}.</b> Esta lista SUBSTITUI qualquer lista de preços anterior. "
                "Preços do cadastro Fidelidade (já com desconto). Use apenas para informar preço e disponibilidade quando o "
                "cliente pedir o produto pelo nome - nunca para orientar uso, dose, indicação ou substituição (isso é sempre "
                "com o farmacêutico). Não é oferta nem promoção. Produto que não estiver nesta lista nem no catálogo: "

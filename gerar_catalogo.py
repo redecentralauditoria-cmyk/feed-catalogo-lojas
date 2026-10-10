@@ -38,14 +38,24 @@ EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda"
 CHECKLIST_MP = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
 MP_LIGADO = False   # 07/10/2026: Marcel pediu para esperar - so ligar (True) com o OK dele
 MP_CODIGOS = set()
+MP_NOMES = {}          # codigo -> nome completo do checklist (usado quando o item entra sem foto)
+MP_MIN_UN = 5          # regra em discussao 07-10/10/2026: so tem vaga garantida o item MP que vendeu >= 5 un no fechamento
+FOTO_ERRADA = {"115550", "116282", "61956"}  # banco Instabuy tem foto/titulo de OUTRO produto (Eudora, Integralmedica, Milnutri) - nao usar
+# item MP sem foto entra no catalogo com esta imagem provisoria ate o MKT subir a foto (a Meta exige image_link)
+FOTO_PROVISORIA = "https://raw.githubusercontent.com/redecentralauditoria-cmyk/feed-catalogo-lojas/main/sem_foto.png"
+if os.environ.get("MP_SIMULAR") == "1":
+    MP_LIGADO = True   # so para simulacao em pasta temporaria; nunca publicar assim sem OK do Marcel
 if MP_LIGADO and os.path.exists(CHECKLIST_MP):
     _wb = openpyxl.load_workbook(CHECKLIST_MP, data_only=True, read_only=True)
     for _ws in _wb.worksheets:
         if "Instru" in _ws.title or "Geral" in _ws.title or _ws.title.strip().upper() == "MEDICAMENTO":
             continue
         for _r in _ws.iter_rows(values_only=True):
-            if _r and len(_r) > 1 and _r[1] and str(_r[1]).strip().isdigit():
+            if _r and len(_r) > 3 and _r[1] and str(_r[1]).strip().isdigit():
+                if "natus" in unicodedata.normalize("NFKD", str(_r[3]).lower()):   # Natusplant fora (decisao 07/10)
+                    continue
                 MP_CODIGOS.add(str(_r[1]).strip().lstrip("0"))
+                MP_NOMES[str(_r[1]).strip().lstrip("0")] = re.sub(r"\s+", " ", str(_r[3]).replace(" ", " ")).strip().title()
 elif MP_LIGADO:
     print(f"  AVISO: checklist de marca propria nao encontrado ({CHECKLIST_MP}) - catalogo sai so pelos mais vendidos")
 
@@ -96,6 +106,7 @@ ws = wb["CADASTRO"]
 print(f"  cadastro: {os.path.basename(arq_cad)}")
 
 linhas, medicamento, sem_foto, sem_estoque, excluidos = [], 0, 0, 0, []
+fotos_provisorias = []
 for r in ws.iter_rows(min_row=2, values_only=True):
     ean, cod, desc, lab, grupo, _cf, _cm, _uc, pmc, _fr, _m1, _m2, _pr, _dm, lsit = r[:15]
     if not cod:
@@ -118,17 +129,22 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     if k.lstrip("0") not in tem_estoque:
         sem_estoque += 1
         continue
-    if k not in fotos:
-        sem_foto += 1
-        continue
-
-    nome_ib, marca, img = fotos[k]
+    k0 = k.lstrip("0")
+    if k in FOTO_ERRADA or k not in fotos:
+        if k0 in MP_CODIGOS:      # marca propria entra mesmo sem foto (decisao Marcel 10/10): imagem provisoria + nome do checklist
+            nome_ib, marca, img = MP_NOMES.get(k0) or desc, "Rede Central", FOTO_PROVISORIA
+            fotos_provisorias.append(k0)
+        else:
+            sem_foto += 1
+            continue
+    else:
+        nome_ib, marca, img = fotos[k]
     titulo = (nome_ib or desc or "").strip()
     if any(x in norm(titulo) or x in norm(desc or "") for x in EXCLUIR_NOME):
         excluidos.append(titulo)
         continue
     # segmentos fora do catalogo (decisao do Marcel 06/10/2026): agulhas, seringas e testes (palavra inteira no nome)
-    if re.search(r"\b(agulhas?|seringas?|testes?)\b", norm(titulo)):
+    if k0 not in MP_CODIGOS and re.search(r"\b(agulhas?|seringas?|testes?)\b", norm(titulo)):
         excluidos.append(titulo)
         continue
 
@@ -176,7 +192,7 @@ i_fil, i_prod, i_qtd = cab.index("filial"), cab.index("produto"), cab.index("qua
 i_bruto = cab.index("valor bruto")  # regra do Marcel (06/10/2026): faturamento = Quantidade x Valor Bruto
 i_vend = cab.index("nome vendedor") if "nome vendedor" in cab else None
 
-vendido = {}
+vendido, qtd_un = {}, {}
 for r in linhas_ven:
     cod, fil = r[i_prod], str(r[i_fil] or "").strip()
     if not cod or not fil or fil.lstrip("0") == "":
@@ -190,14 +206,16 @@ for r in linhas_ven:
         continue
     k = str(cod).strip().lstrip("0")
     vendido[k] = vendido.get(k, 0) + q * v
+    qtd_un[k] = qtd_un.get(k, 0) + q
 
 def faturamento(l):
     return vendido.get(l["id"].lstrip("0"), 0)
 
-eh_mp = lambda l: l["id"].lstrip("0") in MP_CODIGOS
+eh_mp = lambda l: l["id"].lstrip("0") in MP_CODIGOS and qtd_un.get(l["id"].lstrip("0"), 0) >= MP_MIN_UN
 top_mp = sorted((l for l in linhas if eh_mp(l)), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
 top_outros = sorted((l for l in linhas if not eh_mp(l) and faturamento(l) > 0), key=faturamento, reverse=True)
 top = top_mp + top_outros[:LIMITE_WHATSAPP - len(top_mp)]
+print(f"  marca propria sem foto (imagem provisoria): {len([l for l in top if l['image_link'] == FOTO_PROVISORIA])}")
 print(f"  marca propria no catalogo WhatsApp: {len(top_mp)} | mais vendidos (demais): {len(top) - len(top_mp)}")
 top.sort(key=lambda l: norm(l["title"]))  # exibicao alfabetica; entrada no top 500 já foi decidida acima por faturamento
 with open(SAIDA_TOP, "w", newline="", encoding="utf-8-sig") as f:
