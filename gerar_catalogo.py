@@ -36,7 +36,7 @@ EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda"
 # (vaga garantida, mesmo fora dos mais vendidos e mesmo em grupo SIMIL LIBERADOS); o resto das 500 vagas e
 # completado pelos mais vendidos. Fica de fora a aba MEDICAMENTO do checklist (politica do WhatsApp nao permite remedio no catalogo).
 CHECKLIST_MP = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
-MP_LIGADO = False   # 07/10/2026: Marcel pediu para esperar - so ligar (True) com o OK dele
+MP_LIGADO = True    # ligado em 10/10/2026 com OK do Marcel (regra: >=5 un, sem Natusplant, sem aba MEDICAMENTO, MP sem foto entra com logo)
 MP_CODIGOS = set()
 MP_NOMES = {}          # codigo -> nome completo do checklist (usado quando o item entra sem foto)
 MP_MIN_UN = 5          # regra em discussao 07-10/10/2026: so tem vaga garantida o item MP que vendeu >= 5 un no fechamento

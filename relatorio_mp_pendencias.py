@@ -1,5 +1,5 @@
 # Relatorio das pendencias da marca propria no catalogo WhatsApp (regra MP em discussao com o Marcel - 07-10/10/2026)
-import openpyxl, glob, os, re, unicodedata, datetime
+import csv, openpyxl, glob, os, re, unicodedata, datetime
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 A = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
@@ -61,9 +61,10 @@ wb.remove(wb.active)
 
 # 1 - fotos para o Vinicius
 fv = [r for r in rows if ok(r) and (r['sem_foto'] or r['foto_errada'])]
-aba('Fotos p Vinicius', ['Código', 'Categoria', 'Produto (checklist)', 'Nome no cadastro', 'Situação da foto', 'Qtde vendida (mês)'],
-    [[r['cod'], r['cat'], r['desc'], r['cad'], 'Foto do banco é de OUTRO produto (' + r['titulo_banco'] + ')' if r['foto_errada'] else 'Sem foto', r['q']] for r in sorted(fv, key=lambda r: (r['cat'], r['desc']))],
-    [10, 16, 58, 46, 52, 14])
+lin = [[r['cod'], 'Marca própria - ' + r['cat'], r['desc'], r['cad'], 'Foto do banco é de OUTRO produto (' + r['titulo_banco'] + ')' if r['foto_errada'] else 'Sem foto', r['q']] for r in sorted(fv, key=lambda r: (r['cat'], r['desc']))]
+for k in ('61956',):   # fora do checklist MP, mas com foto errada no banco (achado 10/10)
+    lin.append([k, 'Mais vendidos (não é marca própria)', cad[k][0], cad[k][0], 'Foto do banco é de OUTRO produto (' + str(foto.get(k, ('', ''))[0]) + ')', qt.get(k, 0)])
+aba('Fotos p Vinicius', ['Código', 'Categoria', 'Produto (checklist)', 'Nome no cadastro', 'Situação da foto', 'Qtde vendida (mês)'], lin, [10, 30, 58, 46, 60, 14])
 # 2 - menos de 5 un
 m5 = [r for r in rows if ok(r) and r['q'] < 5]
 aba('Menos de 5 un', ['Código', 'Categoria', 'Produto (checklist)', 'Nome no cadastro', 'Qtde vendida (mês)', 'Estoque (rede)', 'Preço (P.M.C.)', 'Foto'],
@@ -79,7 +80,19 @@ aba('Medicamento (lista preços)', ['Código', 'Produto (checklist)', 'Nome no c
 # 5 - natusplant
 aba('Natusplant (fora)', ['Código', 'Produto (checklist)', 'Qtde vendida (mês)', 'Estoque'],
     [[r['cod'], r['desc'], r['q'], r['est']] for r in rows if r['natus']], [10, 62, 14, 10])
+cat500 = {r['id'].lstrip('0') for r in csv.DictReader(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'catalogo_top500.csv'), encoding='utf-8-sig'))}
+def motivo(r):
+    if r['med']: return 'Medicamento (Política Meta) - vai na lista de preços'
+    if r['natus']: return 'Natusplant (fora por decisão)'
+    if r['sem_cad']: return 'Fora do cadastro'
+    if r['sem_est']: return 'Sem estoque em nenhuma loja'
+    if r['q'] < 5: return 'Vendeu menos de 5 un em setembro'
+    return 'Outro (conferir)'
+fora = [r for r in rows if r['cod'] not in cat500]
+aba('Fora do catálogo', ['Código', 'Categoria', 'Produto (checklist)', 'Motivo', 'Qtde vendida (mês)', 'Estoque (rede)', 'Preço (P.M.C.)'],
+    [[r['cod'], r['cat'], r['desc'], motivo(r), r['q'], r['est'], r['preco']] for r in sorted(fora, key=lambda r: (motivo(r), r['cat'], r['desc']))], [10, 16, 58, 46, 14, 12, 12])
+wb.move_sheet('Fora do catálogo', offset=-(len(wb.sheetnames) - 1))
 out = A + r"\marca_propria_pendencias_catalogo_" + datetime.date.today().strftime('%d-%m-%Y') + ".xlsx"
 wb.save(out)
-print(out); print('checklist', len(rows), '| fotos', len(fv), '| <5un', len(m5), '| sem cad/est', len(fo), '| med', sum(r['med'] for r in rows), '| natus', sum(r['natus'] for r in rows), '| vendas', os.path.basename(vf))
+print(out); print('fora do catalogo', len(fora)); print('checklist', len(rows), '| fotos', len(fv), '| <5un', len(m5), '| sem cad/est', len(fo), '| med', sum(r['med'] for r in rows), '| natus', sum(r['natus'] for r in rows), '| vendas', os.path.basename(vf))
 for r in fv: print(' FOTO', r['cod'], r['desc'], '| errada' if r['foto_errada'] else '')
