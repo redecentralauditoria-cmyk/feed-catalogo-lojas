@@ -40,6 +40,10 @@ MP_LIGADO = True    # ligado em 10/10/2026 com OK do Marcel (regra: >=5 un, sem 
 MP_CODIGOS = set()
 MP_NOMES = {}          # codigo -> nome completo do checklist (usado quando o item entra sem foto)
 MP_MIN_UN = 5          # regra em discussao 07-10/10/2026: so tem vaga garantida o item MP que vendeu >= 5 un no fechamento
+# MP com menos de 5 un que o Marcel mandou incluir mesmo assim (10/10/2026, 46 itens escolhidos da aba "Fora do catalogo")
+MP_FORCAR = set("""115764 115442 115445 115447 115768 107333 115439 116254 115546 115453 115936 115935 93312 115767 115928 115789 115455
+115407 116283 116282 115550 115544 115428 93308 115440 115777 115375 93300 115554 115452 93303 93302 93318 109984 108223 115444 115448
+115373 107330 115406 115437 116255 115538 115545 115450 115443""".split())
 FOTO_ERRADA = {"115550", "116282", "61956"}  # banco Instabuy tem foto/titulo de OUTRO produto (Eudora, Integralmedica, Milnutri) - nao usar
 # item MP sem foto entra no catalogo com esta imagem provisoria ate o MKT subir a foto (a Meta exige image_link)
 FOTO_PROVISORIA = "https://raw.githubusercontent.com/redecentralauditoria-cmyk/feed-catalogo-lojas/main/sem_foto.png"
@@ -211,10 +215,11 @@ for r in linhas_ven:
 def faturamento(l):
     return vendido.get(l["id"].lstrip("0"), 0)
 
-eh_mp = lambda l: l["id"].lstrip("0") in MP_CODIGOS and qtd_un.get(l["id"].lstrip("0"), 0) >= MP_MIN_UN
+eh_mp = lambda l: l["id"].lstrip("0") in MP_CODIGOS and (qtd_un.get(l["id"].lstrip("0"), 0) >= MP_MIN_UN or l["id"].lstrip("0") in MP_FORCAR)
 top_mp = sorted((l for l in linhas if eh_mp(l)), key=faturamento, reverse=True)[:LIMITE_WHATSAPP]
 top_outros = sorted((l for l in linhas if not eh_mp(l) and faturamento(l) > 0), key=faturamento, reverse=True)
 top = top_mp + top_outros[:LIMITE_WHATSAPP - len(top_mp)]
+print(f"  MP forcados (Marcel 10/10): {len(MP_FORCAR)} | no catalogo: {sum(1 for l in top if l['id'].lstrip('0') in MP_FORCAR)} | faltando: {sorted(MP_FORCAR - {l['id'].lstrip('0') for l in top})}")
 print(f"  marca propria sem foto (imagem provisoria): {len([l for l in top if l['image_link'] == FOTO_PROVISORIA])}")
 print(f"  marca propria no catalogo WhatsApp: {len(top_mp)} | mais vendidos (demais): {len(top) - len(top_mp)}")
 top.sort(key=lambda l: norm(l["title"]))  # exibicao alfabetica; entrada no top 500 já foi decidida acima por faturamento
