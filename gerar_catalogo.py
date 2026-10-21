@@ -8,10 +8,18 @@ REGRAS DE SEGURANCA (nao alterar sem falar com o Marcel):
   pelo cadastro oficial e NUNCA entram.
   Esse filtro e a trava real: o medicamento nao existe no arquivo, entao a IA nao
   tem como informar preco dele pelo catalogo.
-- Preco = coluna P.M.C. do CADASTRO (ja com desconto Fidelidade).
+- Preco = P.M.C. x (1 - Promocao) do CADASTRO (21/10/2026; antes so P.M.C. = preco cheio, errado p/ itens com desconto).
 """
 import openpyxl, csv, glob, os, re, sys, unicodedata
 from datetime import datetime
+
+def preco_venda(pmc, promo):
+    """Preço real de venda (Marcel 21/10/2026): P.M.C. x (1 - coluna Promoção do cadastro). Promoção é a fração de desconto (0,59 = 59%)."""
+    p = float(pmc or 0)
+    try: d = float(promo or 0)
+    except (TypeError, ValueError): d = 0
+    if 0 < d < 1: p = p * (1 - d)
+    return round(p, 2)
 
 # Todas as fontes vem da pasta dedicada deste projeto (o Marcel cola os arquivos aqui manualmente,
 # nunca direto da rede) - pasta com espacos duplos de proposito, e o nome real da pasta no disco.
@@ -123,7 +131,7 @@ for r in ws.iter_rows(min_row=2, values_only=True):
     if str(lsit).strip().lower() != "true":
         continue
     try:
-        preco = float(pmc or 0)
+        preco = preco_venda(pmc, _pr)
     except (TypeError, ValueError):
         preco = 0
     if preco <= 0:
