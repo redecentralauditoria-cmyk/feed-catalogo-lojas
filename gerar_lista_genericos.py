@@ -23,6 +23,18 @@ def preco_venda(pmc, promo):
     if 0 < d < 1: p = p * (1 - d)
     return round(p, 2)
 
+# Tabloides/ofertas em vigor HOJE (pasta TABELAS DESCONTOS CAMPANHAS) - valem no lugar da coluna Promocao (22/10/2026)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from campanhas import precos_campanha
+CAMPANHA = precos_campanha()
+
+def preco_final(cod, pmc, promo):
+    p = preco_venda(pmc, promo)
+    try: fator = CAMPANHA.get(int(str(cod).strip()))
+    except ValueError: fator = None
+    c = round(float(pmc or 0) * fator, 2) if fator else 0
+    return c if c > 0 and (p <= 0 or c < p) else p
+
 PASTA = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
 DIARIO = os.path.join(PASTA, "ATUALIZAÇÃO DIARIA - CATALOGO PROD")
 INCLUIR_CONTROLADOS = False
@@ -59,7 +71,7 @@ for r in openpyxl.load_workbook(arq_cad, read_only=True, data_only=True)["CADAST
     if not cod or grupo not in GRUPOS_GENERICO or str(lsit).strip().lower() != "true":
         continue
     try:
-        preco = preco_venda(pmc, promo)
+        preco = preco_final(cod, pmc, promo)
     except (TypeError, ValueError):
         continue
     if preco <= 0 or str(cod).strip().lstrip("0") not in tem_estoque:
