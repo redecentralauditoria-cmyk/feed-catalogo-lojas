@@ -15,6 +15,14 @@ from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 
+def preco_venda(pmc, promo):
+    """Preço real de venda (Marcel 21/10/2026): P.M.C. x (1 - coluna Promoção do cadastro). Promoção é a fração de desconto (0,59 = 59%)."""
+    p = float(pmc or 0)
+    try: d = float(promo or 0)
+    except (TypeError, ValueError): d = 0
+    if 0 < d < 1: p = p * (1 - d)
+    return round(p, 2)
+
 PASTA = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
 DIARIO = os.path.join(PASTA, "ATUALIZAÇÃO DIARIA - CATALOGO PROD")
 INCLUIR_CONTROLADOS = False
@@ -47,11 +55,11 @@ for r in openpyxl.load_workbook(arq_est, read_only=True, data_only=True).workshe
 arq_cad = mais_recente("CADASTRO DE PRODUTOS ATUALIZADO*.xlsx")
 itens = []
 for r in openpyxl.load_workbook(arq_cad, read_only=True, data_only=True)["CADASTRO"].iter_rows(min_row=2, values_only=True):
-    cod, desc, grupo, pmc, lsit = r[1], r[2], (r[4] or "").strip(), r[8], r[14]
+    cod, desc, grupo, pmc, lsit, promo = r[1], r[2], (r[4] or "").strip(), r[8], r[14], r[12]
     if not cod or grupo not in GRUPOS_GENERICO or str(lsit).strip().lower() != "true":
         continue
     try:
-        preco = float(pmc or 0)
+        preco = preco_venda(pmc, promo)
     except (TypeError, ValueError):
         continue
     if preco <= 0 or str(cod).strip().lstrip("0") not in tem_estoque:
@@ -69,14 +77,8 @@ S = [Paragraph("Rede Central Farma - Lista de preços de medicamentos GENÉRICOS
                "e o laboratório. Use só para informar o preço do genérico com o MESMO princípio ativo, a MESMA dosagem e a MESMA "
                "forma do medicamento que o cliente pediu - nunca para orientar uso, dose ou indicação. Não é oferta nem promoção.", st),
      Spacer(1, 8)]
-dados = [["Genérico (princípio ativo, dosagem, apresentação, laboratório)", "Preço (R$)"]] + \
-        [[Paragraph(d, st), f"{p:.2f}".replace(".", ",")] for d, p in itens]
-t = Table(dados, colWidths=[14.5 * cm, 2.5 * cm], repeatRows=1)
-t.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F3A5F")), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                       ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"), ("FONTSIZE", (0, 0), (-1, -1), 8.5),
-                       ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#D5D8DD")), ("ALIGN", (1, 0), (1, -1), "RIGHT"),
-                       ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F2F3F5")])]))
-S.append(t)
+for d, p in itens:
+    S.append(Paragraph(f"{d.replace('&', '&amp;')} - R$ " + f"{p:.2f}".replace(".", ","), st))  # produto e preco na MESMA linha (leitura da IA)
 SimpleDocTemplate(saida, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.5 * cm, bottomMargin=1.5 * cm,
                   title="Precos genericos - Rede Central Farma").build(S)
 print(f"cadastro: {os.path.basename(arq_cad)} | estoque: {os.path.basename(arq_est)}")

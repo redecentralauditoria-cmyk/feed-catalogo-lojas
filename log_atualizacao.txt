@@ -1,0 +1,683 @@
+============================================ 
+24/09/2026 11:38:55,94 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 24-09-2026 00-00-02.XLSX -> 11667 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO -venda- 24-09-26.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7497
+    sem estoque em nenhuma loja:  58
+    sem foto publica:             88
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4421 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 490 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+25/09/2026 10:00:02,25 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 24-09-2026 00-00-02.XLSX -> 11667 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO -venda- 25-09-26.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7483
+    sem estoque em nenhuma loja:  35
+    sem foto publica:             88
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4420 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+[main faf7f1d] atualiza catalogo automatico 25/09/2026
+ Committer: Marcel Bonfim Pereira <marcel.pereira@redecentral.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 deletion(-)
+To https://github.com/redecentralauditoria-cmyk/feed-catalogo-lojas.git
+   b06f380..faf7f1d  main -> main
+OK - catalogo publicado 
+ 
+============================================ 
+28/09/2026 10:00:16,63 - ATUALIZACAO AUTOMATICA 
+^C============================================ 
+29/09/2026 10:25:44,89 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 28-09-2026 00-00-02.XLSX -> 11663 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 28-09.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7486
+    sem estoque em nenhuma loja:  33
+    sem foto publica:             96
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4419 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+01/10/2026 15:22:03,84 - ATUALIZACAO AUTOMATICA 
+============================================ 
+02/10/2026  9:12:07,03 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 01-10-2026 00-00-01.XLSX -> 11648 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 01-10-26.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7488
+    sem estoque em nenhuma loja:  38
+    sem foto publica:             100
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4414 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+02/10/2026 10:00:03,07 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 01-10-2026 00-00-01.XLSX -> 11648 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 01-10-26.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7488
+    sem estoque em nenhuma loja:  38
+    sem foto publica:             100
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4414 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+02/10/2026 18:05:00,36 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 02-10-2026 00-00-01.XLSX -> 11658 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 02-10-26.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 7484
+    sem estoque em nenhuma loja:  28
+    sem foto publica:             102
+    excluidos por nome:           1 ['Violeta Genciana Unifar 30ml']
+
+  CATALOGO GERADO: 4400 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+05/10/2026  9:00:24,37 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 05-10-2026 00-00-00.XLSX -> 11650 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 05-10.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6454
+    sem estoque em nenhuma loja:  73
+    sem foto publica:             134
+    excluidos por nome:           7 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)']
+
+  CATALOGO GERADO: 5353 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+05/10/2026 10:00:03,64 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 05-10-2026 00-00-00.XLSX -> 11650 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 05-10.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6454
+    sem estoque em nenhuma loja:  73
+    sem foto publica:             134
+    excluidos por nome:           7 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)']
+
+  CATALOGO GERADO: 5353 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-08 Vendas geral.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+06/10/2026 10:00:03,31 - ATUALIZACAO AUTOMATICA 
+============================================ 
+07/10/2026 10:00:02,29 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 06-10-2026 00-00-17.XLSX -> 11653 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 06-10.xlsx
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6458
+    sem estoque em nenhuma loja:  73
+    sem foto publica:             139
+    excluidos por nome:           11 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5346 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+07/10/2026 17:33:05,57 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 07-10-2026 00-00-00.XLSX -> 11661 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 07-10.xlsx
+  marca propria no catalogo WhatsApp: 0 | mais vendidos (demais): 500
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6465
+    sem estoque em nenhuma loja:  73
+    sem foto publica:             143
+    excluidos por nome:           11 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5346 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+08/10/2026 10:00:02,38 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 07-10-2026 00-00-00.XLSX -> 11661 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 07-10.xlsx
+  marca propria no catalogo WhatsApp: 0 | mais vendidos (demais): 500
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6465
+    sem estoque em nenhuma loja:  73
+    sem foto publica:             143
+    excluidos por nome:           11 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5346 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+09/10/2026 10:00:02,58 - ATUALIZACAO AUTOMATICA 
+^C============================================ 
+10/10/2026 13:23:30,27 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 08-10-2026 00-00-01.XLSX -> 11661 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 09-10.xlsx
+  marca propria sem foto (imagem provisoria): 12
+  marca propria no catalogo WhatsApp: 228 | mais vendidos (demais): 272
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6411
+    sem estoque em nenhuma loja:  76
+    sem foto publica:             132
+    excluidos por nome:           11 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5418 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+12/10/2026 23:00:25,14 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 08-10-2026 00-00-01.XLSX -> 11661 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 09-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6411
+    sem estoque em nenhuma loja:  76
+    sem foto publica:             132
+    excluidos por nome:           11 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Pastilha Valda Mais Própolis e Gengibre Sachê 12g (F)', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5418 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+13/10/2026 10:46:43,33 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 13-10-2026 00-00-02.XLSX -> 11639 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 13-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6414
+    sem estoque em nenhuma loja:  96
+    sem foto publica:             138
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5394 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+14/10/2026  7:47:12,75 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 13-10-2026 00-00-02.XLSX -> 11639 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 13-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6414
+    sem estoque em nenhuma loja:  96
+    sem foto publica:             138
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5394 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+14/10/2026 16:25:57,70 - ATUALIZACAO AUTOMATICA 
+============================================ 
+14/10/2026 16:30:59,31 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 14-10-2026 00-00-01.XLSX -> 11658 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 14-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6414
+    sem estoque em nenhuma loja:  90
+    sem foto publica:             144
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5396 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+[main 7e36ecf] atualiza catalogo automatico 14/10/2026
+ Committer: Marcel Bonfim Pereira <marcel.pereira@redecentral.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+To https://github.com/redecentralauditoria-cmyk/feed-catalogo-lojas.git
+   027b96d..7e36ecf  main -> main
+OK - catalogo publicado 
+ 
+============================================ 
+15/10/2026 10:00:01,98 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 15-10-2026 00-00-01.XLSX -> 11656 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 15-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6415
+    sem estoque em nenhuma loja:  94
+    sem foto publica:             147
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5392 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+16/10/2026  9:00:11,83 - ATUALIZACAO AUTOMATICA 
+^C============================================ 
+16/10/2026 10:23:35,17 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 15-10-2026 00-00-01.XLSX -> 11656 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 15-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6415
+    sem estoque em nenhuma loja:  94
+    sem foto publica:             147
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5392 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+17/10/2026 19:37:31,67 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 16-10-2026 00-00-00.XLSX -> 11657 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 16-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6429
+    sem estoque em nenhuma loja:  97
+    sem foto publica:             147
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5390 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+19/10/2026  9:20:55,59 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 16-10-2026 00-00-00.XLSX -> 11657 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 16-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6429
+    sem estoque em nenhuma loja:  97
+    sem foto publica:             147
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5390 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+19/10/2026 10:00:02,24 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 16-10-2026 00-00-00.XLSX -> 11657 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 16-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 46 | faltando: []
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 274 | mais vendidos (demais): 226
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6429
+    sem estoque em nenhuma loja:  97
+    sem foto publica:             147
+    excluidos por nome:           10 ['Vitamina C efervescente Targifor Cewin 1g com 10 comprimidos', 'Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Zincopro 30Cpr', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5390 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+20/10/2026 10:00:02,27 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 20-10-2026 00-00-07.XLSX -> 11648 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 20-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 45 | faltando: ['108223']
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 273 | mais vendidos (demais): 227
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6421
+    sem estoque em nenhuma loja:  45
+    sem foto publica:             148
+    excluidos por nome:           8 ['Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5378 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+20/10/2026 17:32:03,25 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 20-10-2026 00-00-07.XLSX -> 11648 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO- 20-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 45 | faltando: ['108223']
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 273 | mais vendidos (demais): 227
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6421
+    sem estoque em nenhuma loja:  45
+    sem foto publica:             148
+    excluidos por nome:           8 ['Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5378 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+21/10/2026 10:00:02,19 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 21-10-2026 00-00-01.XLSX -> 11637 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 21-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 45 | faltando: ['108223']
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 273 | mais vendidos (demais): 227
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6423
+    sem estoque em nenhuma loja:  49
+    sem foto publica:             148
+    excluidos por nome:           8 ['Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5372 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+[main da92b87] atualiza catalogo automatico 21/10/2026
+ Committer: Marcel Bonfim Pereira <marcel.pereira@redecentral.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 54 insertions(+), 60 deletions(-)
+To https://github.com/redecentralauditoria-cmyk/feed-catalogo-lojas.git
+   1ead199..da92b87  main -> main
+OK - catalogo publicado 
+ 
+============================================ 
+22/10/2026  9:00:14,31 - ATUALIZACAO AUTOMATICA 
+Gerando catalogo...
+
+  fotos publicas disponiveis: 12736
+  estoque: Estoque das Filiais em 21-10-2026 00-00-01.XLSX -> 11637 com saldo
+  cadastro: CADASTRO DE PRODUTOS ATUALIZADO - 21-10.xlsx
+  MP forcados (Marcel 10/10): 46 | no catalogo: 45 | faltando: ['108223']
+  marca propria sem foto (imagem provisoria): 20
+  marca propria no catalogo WhatsApp: 273 | mais vendidos (demais): 227
+
+  descartados:
+    medicamento (LB/GENER/SIMIL): 6423
+    sem estoque em nenhuma loja:  49
+    sem foto publica:             148
+    excluidos por nome:           8 ['Seringa B-D 20Ml', 'Seringa B-D  5Ml', 'Teste de Diabetes Rápido 1 Unidade', 'Clotrimix Esmalte 7Ml', 'Canfora 1Un (F)', 'Violeta Genciana Unifar 30ml', 'Bye Bye Fever Adulto 2 Unidades', 'Teste Rápido Combo Influenza A + B + Covid-19']
+
+  CATALOGO GERADO: 5372 produtos
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo.csv
+
+  CATALOGO WHATSAPP (mais vendidos): 500 produtos
+  ranking de vendas: 2026-09 Vendas geral editada colunas.xlsx
+  arquivo: C:\Users\marcel.pereira\CLAUDE\projetos\feed-catalogo-lojas\catalogo_top500.csv
+
+Nenhuma mudanca de preco hoje. 
+ 
+============================================ 
+22/10/2026 10:00:01,64 - ATUALIZACAO AUTOMATICA 
