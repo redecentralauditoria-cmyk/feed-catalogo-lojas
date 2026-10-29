@@ -16,6 +16,7 @@ ARQS = {f"precos_medicamentos_venda_livre_{hoje}.pdf": "precos_medicamentos_vend
         f"precos_demais_medicamentos_{hoje}.pdf": "precos_demais_medicamentos.pdf",
         f"precos_demais_produtos_{hoje}.pdf": "precos_demais_produtos.pdf",
         f"precos_controlados_antibioticos_{hoje}.pdf": "precos_controlados_antibioticos.pdf",
+        f"tabela_principio_ativo_{hoje}.pdf": "tabela_principio_ativo.pdf",
         "marcas_lideres_x_marca_propria.pdf": "marcas_lideres_x_marca_propria.pdf"}
 if not RCLONE: sys.exit("ERRO: rclone não encontrado")
 falta = [a for a in ARQS if not os.path.exists(os.path.join(DIARIO, a))]
