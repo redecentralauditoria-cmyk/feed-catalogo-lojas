@@ -41,6 +41,31 @@ def ler_pdf(arq):
     return datetime.date(a1, m1, d1), datetime.date(a2, m2, d2), itens
 
 
+# ---- Tabelas em EXCEL (desde 30/10/2026): "OFERTAS DO DIA - 30 e 31-10-2026 - LISTAGEM - TINTURAS.xlsx".
+# A validade vem do NOME do arquivo ("30 e 31-10-2026" = 30 a 31/10; "02 e 04-11-2026" = 02 a 04/11).
+# Colunas: Produto | Descrição | Preço Prazo | % Desconto | Preço Venda | Barras. fator = Preço Venda / Preço Prazo.
+RE_NOME_DATA = re.compile(r"(\d{1,2})\s*(?:e|a)\s*(\d{1,2})-(\d{2})-(\d{4})", re.I)
+
+
+def ler_excel(arq):
+    import openpyxl
+    m = RE_NOME_DATA.search(os.path.basename(arq))
+    if not m:
+        return None, None, {}
+    d1, d2, mes, ano = map(int, m.groups())
+    ini, fim = datetime.date(ano, mes, d1), datetime.date(ano, mes, d2)
+    itens = {}
+    ws = openpyxl.load_workbook(arq, read_only=True, data_only=True).worksheets[0]
+    for r in ws.iter_rows(min_row=3, values_only=True):
+        try:
+            cod, prazo, venda = int(str(r[0]).strip()), float(r[2]), float(r[4])
+        except (TypeError, ValueError):
+            continue
+        if prazo > 0 and venda > 0:
+            itens[cod] = (str(r[1] or "").strip(), venda, prazo)
+    return ini, fim, itens
+
+
 def precos_campanha(data=None, verbose=True):
     """{codigo: fator} das campanhas válidas na data (padrão: hoje); fator = preço promoção / preço vista.
     Usar fator x P.M.C. do cadastro: itens "(F)" têm P.M.C. por fração (cartela/unidade) e o tablóide
@@ -48,9 +73,11 @@ def precos_campanha(data=None, verbose=True):
     Se 2 campanhas tiverem o mesmo item, fica o MENOR fator (é o que o caixa cobra)."""
     data = data or datetime.date.today()
     precos = {}
-    for arq in sorted(glob.glob(os.path.join(PASTA, "*.pdf"))):
-        ini, fim, itens = ler_pdf(arq)
+    for arq in sorted(glob.glob(os.path.join(PASTA, "*.pdf")) + glob.glob(os.path.join(PASTA, "*.xls*"))):
         nome = os.path.basename(arq)
+        if nome.startswith("~$"):
+            continue
+        ini, fim, itens = ler_excel(arq) if arq.lower().endswith((".xlsx", ".xls")) else ler_pdf(arq)
         if ini is None:
             if verbose: print(f"  campanha SEM VALIDADE (ignorada): {nome}")
             continue
@@ -67,8 +94,9 @@ def precos_campanha(data=None, verbose=True):
 if __name__ == "__main__":
     import sys
     dt = datetime.datetime.strptime(sys.argv[1], "%d/%m/%Y").date() if len(sys.argv) > 1 else None
-    for arq in sorted(glob.glob(os.path.join(PASTA, "*.pdf"))):
-        ini, fim, itens = ler_pdf(arq)
+    for arq in sorted(glob.glob(os.path.join(PASTA, "*.pdf")) + glob.glob(os.path.join(PASTA, "*.xls*"))):
+        if os.path.basename(arq).startswith("~$"): continue
+        ini, fim, itens = ler_excel(arq) if arq.lower().endswith((".xlsx", ".xls")) else ler_pdf(arq)
         print(os.path.basename(arq), ini, fim, len(itens))
         for c, (d, p, v) in itens.items():
             print(f"   {c:06d} {d[:40]:40s} {v:8.2f} {p:8.2f}")
