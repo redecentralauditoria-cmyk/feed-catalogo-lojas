@@ -55,7 +55,13 @@ EXCLUIR_NOME = ["violeta genciana", "clotrimix", "targifor", "zincopro", "valda"
 # Marca propria (decisao do Marcel 07/10/2026): todo item do checklist de marca propria entra no catalogo do WhatsApp
 # (vaga garantida, mesmo fora dos mais vendidos e mesmo em grupo SIMIL LIBERADOS); o resto das 500 vagas e
 # completado pelos mais vendidos. Fica de fora a aba MEDICAMENTO do checklist (politica do WhatsApp nao permite remedio no catalogo).
-CHECKLIST_MP = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
+import glob as _g, re as _re
+def checklist_mais_novo():
+    """Checklist de Marca Propria mais novo (maior versao no nome: ..._RedeCentral_2026_NN.xlsx) na pasta ULTIMO."""
+    pasta = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO"
+    a = [x for x in _g.glob(pasta + "\\Checklist_MarcaPropria_RedeCentral_2026_*.xlsx") if not _re.search(r"BACKUP|~\$", x)]
+    return max(a, key=lambda x: int(_re.search(r"_(\d+)\.xlsx$", x).group(1))) if a else pasta + "\\Checklist_MarcaPropria_RedeCentral_2026_NAO_ENCONTRADO.xlsx"
+CHECKLIST_MP = checklist_mais_novo()   # 04/11/2026: sempre a versao mais nova (a v25 fixa sumiu da pasta e o catalogo ficou 6 dias sem marca propria)
 MP_LIGADO = True    # ligado em 10/10/2026 com OK do Marcel (regra: >=5 un, sem Natusplant, sem aba MEDICAMENTO, MP sem foto entra com logo)
 MP_CODIGOS = set()
 MP_NOMES = {}          # codigo -> nome completo do checklist (usado quando o item entra sem foto)

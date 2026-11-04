@@ -11,7 +11,13 @@ from datetime import date
 AQUI = os.path.dirname(os.path.abspath(__file__))
 A = r"C:\Users\marcel.pereira\CLAUDE\AUTOMATIZ. ATENDIM.  WHATSAPP  LOJAS"
 D = A + r"\ATUALIZAÇÃO DIARIA - CATALOGO PROD"
-CK = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO\Checklist_MarcaPropria_RedeCentral_2026_25.xlsx"
+import glob as _g, re as _re
+def checklist_mais_novo():
+    """Checklist de Marca Propria mais novo (maior versao no nome: ..._RedeCentral_2026_NN.xlsx) na pasta ULTIMO."""
+    pasta = r"C:\Users\marcel.pereira\Desktop\AUDITORIAS\01-CLAUDE\VERIFICAR NAS LOJAS\01- CHECKLIST - ULTIMO"
+    a = [x for x in _g.glob(pasta + "\\Checklist_MarcaPropria_RedeCentral_2026_*.xlsx") if not _re.search(r"BACKUP|~\$", x)]
+    return max(a, key=lambda x: int(_re.search(r"_(\d+)\.xlsx$", x).group(1))) if a else pasta + "\\Checklist_MarcaPropria_RedeCentral_2026_NAO_ENCONTRADO.xlsx"
+CK = checklist_mais_novo()
 MEDS = {"107026", "107025", "116240", "116239", "110417"}      # na lista de medicamentos (Gastroclean fora: principio ativo nao confirmado)
 no_cat = {r['id'].lstrip('0') for r in csv.DictReader(open(os.path.join(AQUI, 'catalogo_top500.csv'), encoding='utf-8-sig'))}
 # --- REVISAO DOS LIDERES (10/10/2026, pedido do Marcel) -------------------------------------------------------------
