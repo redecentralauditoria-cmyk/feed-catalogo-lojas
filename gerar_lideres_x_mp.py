@@ -25,25 +25,28 @@ no_cat = {r['id'].lstrip('0') for r in csv.DictReader(open(os.path.join(AQUI, 'c
 # lideres (cliente nao "pede" Algodao ou Bem Care como lider); (2) corrige pelo codigo os itens cujo segmento esta errado.
 n_ = lambda x: re.sub(r'[^a-z0-9 ]', '', unicodedata.normalize('NFKD', str(x).lower()).encode('ascii', 'ignore').decode()).strip()
 PROPRIAS = {n_(x) for x in ["Bem Care", "Baby Care", "Gelavit", "Hidraday", "Melune", "Dermunn", "Illus", "Unipantol", "Bemvita", "Politabs", "Unifabra",
-            "Polimag", "Farlife", "Puradent", "Keep", "Amis", "Vitaclinical", "Hair Heal", "Natusplant", "Laxivita", "Lufree", "Gelomag"]}
+            "Polimag", "Farlife", "Puradent", "Keep", "Amis", "Vitaclinical", "Hair Heal", "Natusplant", "Laxivita", "Lufree", "Gelomag",
+            "Hairheal", "Amis Tech", "Dermun", "Vita Clinical", "Bemfix", "Smalto", "Gelavit"]}
 GENERICOS = {n_(x) for x in ["Balanca Digital", "Joelheira", "Munhequeira", "Tipoia", "Tornozeleira", "Algodao", "Soro Fisiologico", "Sol Fisiologica",
              "Agua Oxigenada", "Agua Boricada", "Agua Micelar", "Complexo B", "Vitamina B12", "Vitamina C", "Colageno Tipo Ii", "Creatina", "Cafeina",
              "Melatonina", "Magnesio", "Magnesio+Treonina", "Whey 100% Pure", "100% Whey", "Diclofen.Dietil.Mg", "Simeticona Mg", "Calcio Mdk",
              "Coletor Universal", "Smells", "Kerasys", "Pampers do oleo"]}
 # codigo -> lideres corretos do segmento do item ('' = sem lider confiavel, nao oferecer por lider)
 OVERRIDE = {
-    "108612": "Johnsons Baby · Baruel Baby · Muriel Baby · Monica", "108613": "Johnsons Baby · Baruel Baby · Muriel Baby · Monica",
-    "111864": "Johnsons Baby · Baruel Baby · Muriel Baby · Monica",        # sabonete infantil vinha com lideres de sabonete adulto (Dove...)
-    "115435": "Johnsons Baby · Joao E Maria",                                # locao hidratante infantil vinha com Cerave/Neutrogena (adulto)
-    "115434": "Johnsons Baby · Joao E Maria",                                # oleo infantil vinha com Pampers (fralda) e a propria Baby Care
-    "115455": "Anthelios · Anasol",                                           # stick FPS80 estava no grupo de vitaminas (Vita Supraz...)
-    # protetor solar INFANTIL (Marcel 10/10): Australian Gold/Skelt/Sunless/Anasol nao sao lideres do segmento infantil
-    **{c: "Sundown Kids · Nivea Sun Kids · Anthelios Dermo-Pediatrics · Mustela · Isdin" for c in ("115454", "107327", "107330", "107331", "107329", "107333")},                                                             # curativo acne vinha com Cerave (hidratante): sem lider confiavel
+    # 04/11/2026: o checklist v29 trouxe os lideres corretos por segmento (formato "SP: (1)... · REDE: (1)..."); as correcoes manuais
+    # de 10/10 foram aposentadas, EXCETO estas 2 em que a v29 ainda traz segmento errado (avisar o Marcel para corrigir no checklist):
+    "115435": "Johnsons Baby · Joao E Maria",   # locao hidratante infantil vinha com Cerave/Dove/Nivea (adulto)
+    "115434": "Johnsons Baby · Joao E Maria",   # oleo infantil vinha com Pampers (fralda) e a propria Baby Care
 }
 def limpa_lideres(lid):
-    lid = re.sub(r'\[.*?\]', '', lid)   # observacao '[ajuste 10/10 ...]' gravada no checklist
-    nomes = [re.sub(r'\s*\((SP|REDE|SP\s*/\s*REDE)\)', '', x).strip(' ·') for x in re.split(r'\(\d\)', lid)]
-    nomes = [x.strip(' ·').strip() for x in nomes if x.strip(' ·').strip()]
+    """Aceita o formato novo (v27+: 'SP: (1) A (2) B · REDE: (1) C') e o antigo ('(1) A (SP) · (2) B (REDE)'); junta SP e REDE sem repetir."""
+    lid = re.sub(r'\[.*?\]', '', lid)   # observacao '[ajuste ...]' gravada no checklist
+    lid = re.sub(r'\((SP|REDE|SP\s*/\s*REDE)\)', '', lid)
+    nomes = []
+    for x in re.findall(r'\(\d\)\s*([^()\u00b7]+)', lid):
+        x = x.strip(' ·').strip()
+        if x and x.lower() not in [n.lower() for n in nomes]:
+            nomes.append(x)
     ok = [x for x in nomes if n_(x) not in PROPRIAS and n_(x) not in GENERICOS]
     return ' · '.join(ok), nomes
 revisao = []   # (cod, categoria, subcategoria, item, lider original, lider aplicado, motivo)

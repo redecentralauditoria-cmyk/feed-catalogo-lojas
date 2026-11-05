@@ -47,15 +47,47 @@ def ler_pdf(arq):
 RE_NOME_DATA = re.compile(r"(\d{1,2})\s*(?:e|a)\s*(\d{1,2})-(\d{2})-(\d{4})", re.I)
 
 
+_MESES = {"janeiro": 1, "fevereiro": 2, "marco": 3, "março": 3, "abril": 4, "maio": 5, "junho": 6, "julho": 7, "agosto": 8, "setembro": 9,
+          "outubro": 10, "novembro": 11, "dezembro": 12}
+
+
+def _validade_semana(nome):
+    """"Oferta da semana - 9 - 10 - 11 novembro.xlsx" = 09 a 11/11 (ano = o atual; primeiro e ultimo dia citados)."""
+    m = re.search(r"((?:\d{1,2}\s*-\s*)*\d{1,2})\s+([a-zçã]+)", nome, re.I)
+    if not m or m.group(2).lower() not in _MESES:
+        return None, None
+    dias = [int(x) for x in re.findall(r"\d{1,2}", m.group(1))]
+    ano, mes = datetime.date.today().year, _MESES[m.group(2).lower()]
+    return datetime.date(ano, mes, min(dias)), datetime.date(ano, mes, max(dias))
+
+
 def ler_excel(arq):
     import openpyxl
     m = RE_NOME_DATA.search(os.path.basename(arq))
-    if not m:
-        return None, None, {}
-    d1, d2, mes, ano = map(int, m.groups())
-    ini, fim = datetime.date(ano, mes, d1), datetime.date(ano, mes, d2)
+    if m:
+        d1, d2, mes, ano = map(int, m.groups())
+        ini, fim = datetime.date(ano, mes, d1), datetime.date(ano, mes, d2)
+    else:
+        ini, fim = _validade_semana(os.path.basename(arq))
+        if ini is None:
+            return None, None, {}
     itens = {}
     ws = openpyxl.load_workbook(arq, read_only=True, data_only=True).worksheets[0]
+    cab = None
+    for i, r in enumerate(ws.iter_rows(min_row=1, max_row=3, values_only=True)):
+        nomes = [str(c or "").strip().lower() for c in r]
+        if "produto" in nomes and "de:" in nomes and "por:" in nomes:
+            cab = (nomes.index("produto"), nomes.index("descrição") if "descrição" in nomes else nomes.index("produto"), nomes.index("de:"), nomes.index("por:"))
+            break
+    if cab:  # formato "Oferta da semana" (desde 05/11/2026): Produto | Descrição | De: | Por:  (fator = Por / De)
+        for r in ws.iter_rows(min_row=2, values_only=True):
+            try:
+                cod, prazo, venda = int(str(r[cab[0]]).strip()), float(r[cab[2]]), float(r[cab[3]])
+            except (TypeError, ValueError):
+                continue
+            if prazo > 0 and venda > 0:
+                itens[cod] = (str(r[cab[1]] or "").strip(), venda, prazo)
+        return ini, fim, itens
     for r in ws.iter_rows(min_row=3, values_only=True):
         try:
             cod, prazo, venda = int(str(r[0]).strip()), float(r[2]), float(r[4])
